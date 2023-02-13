@@ -1,0 +1,23 @@
+package com.akash.app1.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.akash.app1.model.Employee;
+import com.akash.app1.repository.EmployeeRepository;
+
+@RestController
+@RequestMapping("/api")
+public class EmployeeController {
+
+	@Autowired
+	EmployeeRepository employeeRepository;
+	
+	@PostMapping("/employees")
+	public String createNewEmployee(Employee employee) {
+		employeeRepository.save(employee);
+		return "Employee Created in database";
+	}
+}
